@@ -1,0 +1,39 @@
+---
+// Llamada a la acción a todo el ancho en rosa «chispa» (degradado hacia el morado), con la foto
+// teñida de fondo si hay `imagen`: título gigante centrado (con `resalte`), texto, dos botones y una
+// nota pequeña (`nota`). Sin título ni texto, no se pinta.
+import { seccion, externo } from '../../data/site';
+import { altSeccion } from '../../lib/seo';
+import Seccion from '../ui/Seccion.astro';
+import Imagen from '../ui/Imagen.astro';
+import Resalte from '../ui/Resalte.astro';
+interface Props { id: string }
+const s = seccion(Astro.props.id);
+const fuera = (u?: string) => (externo(u) ? { rel: 'noopener', target: '_blank' } : {});
+---
+
+{
+  s && (s.titulo || s.texto) && (
+    <Seccion id={Astro.props.id} banda="chispa" class="md:!py-36">
+      {s.imagen && (
+        <div slot="fondo" class="absolute inset-0 -z-10">
+          <Imagen src={s.imagen} alt={altSeccion(s)} ancho={1920} alto={900} class="h-full w-full object-cover opacity-25 mix-blend-multiply" />
+        </div>
+      )}
+      <div slot="fondo" class="anillo -right-32 -top-40 h-[30rem] w-[30rem]" aria-hidden="true" />
+      <div slot="fondo" class="anillo -bottom-48 -left-40 h-[28rem] w-[28rem]" aria-hidden="true" />
+      <div class="mx-auto max-w-[68rem] text-center">
+        {s.antetitulo && <p class="antetitulo justify-center">{s.antetitulo}</p>}
+        {s.titulo && <h2 class="mt-6 text-[clamp(2.5rem,7.5vw,6.5rem)] font-black leading-[.95]"><Resalte texto={s.titulo} resalte={s.resalte} /></h2>}
+        {s.texto && <p class="mx-auto mt-7 max-w-2xl text-lg opacity-90 md:text-xl">{s.texto}</p>}
+        {(s.cta || s.cta_secundario) && (
+          <div class="mt-10 flex flex-col justify-center gap-3 sm:flex-row sm:flex-wrap">
+            {s.cta && <a class="btn-blanco" href={s.cta.url} {...fuera(s.cta.url)}>{s.cta.texto}</a>}
+            {s.cta_secundario && <a class="btn-sec" href={s.cta_secundario.url} {...fuera(s.cta_secundario.url)}>{s.cta_secundario.texto}</a>}
+          </div>
+        )}
+        {s.nota && <p class="mt-6 text-sm opacity-80">{s.nota}</p>}
+      </div>
+    </Seccion>
+  )
+}

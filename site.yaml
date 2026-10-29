@@ -1,0 +1,189 @@
+# Contenido de la web. Es lo único que rellena la plataforma NoExpertise.
+# Las secciones se muestran en el orden de este fichero. Para ocultar una: activa: false.
+# Apartado nuevo: un id propio (es su ancla, /#id) con `tipo:` = el diseño de otra sección o `texto`.
+# `resalte`: palabras del título que salen resaltadas (tienen que estar tal cual dentro del título).
+nombre: Lúcida Estudio
+eslogan: Marketing digital y consultoría para pymes que quieren crecer con cabeza.
+sector: agencia
+logo: ""          # ruta a una imagen en public/ (p. ej. /logo.svg). Vacío = nombre en texto.
+colores:
+  primario: "#2a1150"
+  acento: "#c4f04a"
+  fondo: "#f7f2e8"
+  texto: "#1c1229"
+contacto:
+  telefono: "963 08 41 27"
+  email: hola@lucidaestudio.es
+  direccion: "Carrer de Sueca 28, 46006 València (Valencia)"
+  horario: Lunes a jueves de 9:00 a 18:30. Viernes de 9:00 a 14:00.
+  whatsapp: "+34 611 48 20 73"
+redes:
+  instagram: https://www.instagram.com/
+  facebook: ""
+  linkedin: https://www.linkedin.com/
+menu:
+  - { texto: Servicios, url: "/#servicios" }
+  - { texto: Estudio, url: "/#sobre" }
+  - { texto: Método, url: "/#proceso" }
+  - { texto: Blog, url: "/#noticias" }
+  - { texto: Contacto, url: "/#contacto" }
+boton_cabecera: { texto: Sesión gratuita, url: "/#contacto" }
+seo:
+  titulo: Lúcida Estudio · Agencia de marketing y consultoría en Valencia
+  descripcion: "Estrategia, campañas, SEO y webs para pymes de Valencia. Diagnóstico gratuito de 40 minutos y un plan de acción claro, sin permanencias."
+  tipo: ProfessionalService   # tipo de schema.org (LocalBusiness, ProfessionalService…)
+marca_pie: true   # «Web creada con NoExpertise» en el pie (plan gratis)
+
+secciones:
+  hero:
+    activa: true
+    antetitulo: Agencia de marketing y consultoría · Valencia
+    titulo: Marketing que se nota en la caja, no solo en los likes
+    resalte: en la caja
+    texto: "Ayudamos a pymes y negocios de Valencia a conseguir clientes con estrategia, campañas que se miden y una web que vende. Sin humo y sin permanencias."
+    imagen: /fotos/hero.jpg
+    cta: { texto: Reserva tu sesión gratuita, url: "/#contacto" }
+    cta_secundario: { texto: Ver servicios, url: "/#servicios" }
+    items:   # tarjetas flotantes de la derecha (como mucho tres)
+      - { titulo: Estrategia de marketing, texto: "Diagnóstico, público y plan de acción a 90 días.", icono: diana, url: "/#servicios" }
+      - { titulo: Campañas y redes, texto: "Anuncios en Google y Meta con objetivos y seguimiento semanal.", icono: megafono, url: "/#servicios" }
+      - { titulo: Webs que convierten, texto: "Páginas rápidas, claras y pensadas para que te llamen.", icono: pantalla, url: "/#servicios" }
+
+  cifras:
+    activa: true
+    antetitulo: En números
+    titulo: Doce años haciendo crecer negocios de aquí
+    items:
+      - { titulo: "12", texto: años de experiencia }
+      - { titulo: "+140", texto: pymes acompañadas }
+      - { titulo: "3x", texto: contactos de media en 6 meses }
+      - { titulo: "40 min", texto: para tu diagnóstico gratuito }
+
+  servicios:
+    activa: true
+    antetitulo: Servicios
+    titulo: Todo lo que necesitas para hacer crecer tu negocio
+    resalte: hacer crecer
+    texto: "Elige un servicio suelto o un plan completo. Siempre con objetivos claros, un informe al mes y una persona de referencia."
+    cta: { texto: Pide tu diagnóstico, url: "/#contacto" }
+    items:
+      - { titulo: Estrategia y consultoría, texto: "Analizamos tu negocio, tu competencia y tus clientes para decidir dónde invertir y dónde no.", icono: brujula, url: "/#contacto", destacado: false }
+      - { titulo: Publicidad en Google y Meta, texto: "Campañas con presupuesto controlado, pruebas constantes y resultados que puedes ver cada semana.", icono: megafono, url: "/#contacto", destacado: true }
+      - { titulo: SEO y contenidos, texto: "Que te encuentren cuando te buscan: posicionamiento local, blog y fichas de Google bien cuidadas.", icono: lupa, url: "/#contacto", destacado: false }
+      - { titulo: Diseño web, texto: "Webs rápidas y fáciles de usar, con mensajes claros y formularios que llegan a tu correo.", icono: pantalla, url: "/#contacto", destacado: false }
+      - { titulo: Redes sociales, texto: "Calendario, contenidos y respuestas. Una voz reconocible en Instagram, LinkedIn o TikTok.", icono: chat, url: "/#contacto", destacado: false }
+      - { titulo: Marca e identidad, texto: "Nombre, logotipo, colores y tono de voz para que tu negocio se recuerde.", icono: pincel, url: "/#contacto", destacado: false }
+
+  sectores:
+    activa: true
+    antetitulo: Con quién trabajamos
+    titulo: Conocemos tu sector antes de la primera reunión
+    resalte: tu sector
+    texto: "Llevamos años trabajando con negocios de Valencia y su comarca. Eso nos ahorra meses de pruebas."
+    items:
+      - { titulo: Restaurantes y cafeterías }
+      - { titulo: Comercio local }
+      - { titulo: Clínicas y salud }
+      - { titulo: Despachos profesionales }
+      - { titulo: Hoteles y apartamentos }
+      - { titulo: Industria y distribución }
+      - { titulo: Academias y formación }
+      - { titulo: Tiendas online }
+    galeria:
+      - /fotos/sector-1.jpg
+      - /fotos/sector-2.jpg
+      - /fotos/sector-3.jpg
+      - /fotos/sector-4.jpg
+
+  sobre:
+    activa: true
+    antetitulo: El estudio
+    titulo: Estrategas, no gestores de redes
+    resalte: no gestores
+    texto: |
+      Lúcida nació en 2014 en un pequeño local de Russafa. Hoy somos seis personas y seguimos trabajando igual: pocas cuentas, mucho cuidado y números claros cada mes.
+
+      Antes de proponerte nada, entendemos tu negocio. Si una acción no te va a traer clientes, te lo decimos, aunque eso signifique facturar menos.
+    imagen: /fotos/sobre.jpg
+    cta: { texto: Conoce cómo trabajamos, url: "/#proceso" }
+    items:
+      - { titulo: Una persona de referencia, texto: Siempre hablas con quien lleva tu cuenta., icono: usuarios }
+      - { titulo: Sin permanencias, texto: Te quedas porque funciona y por nada más., icono: escudo }
+      - { titulo: Informe mensual, texto: "Qué se ha hecho, qué ha pasado y qué toca ahora.", icono: grafico }
+      - { titulo: Cerca de ti, texto: "En el estudio, en tu negocio o por videollamada.", icono: mapa }
+    personas:
+      - { nombre: Clara Benlloch, cargo: Dirección y estrategia, foto: /placeholders/persona.svg }
+      - { nombre: Andreu Soler, cargo: Campañas y analítica, foto: /placeholders/persona.svg }
+      - { nombre: Nuria Mompó, cargo: Diseño y web, foto: /placeholders/persona.svg }
+
+  proceso:
+    activa: true
+    antetitulo: Método
+    titulo: Del diagnóstico a los resultados en cuatro pasos
+    resalte: resultados
+    texto: "Sin contratos eternos ni informes que nadie lee. Sabes en todo momento qué hacemos y por qué."
+    items:
+      - { titulo: Diagnóstico gratuito, texto: "Una sesión de 40 minutos para conocer tu negocio, tus números y tus objetivos.", icono: lupa, duracion: Semana 1 }
+      - { titulo: Plan de acción, texto: "Prioridades, canales y presupuesto por escrito. Tú decides qué hacemos y cuándo.", icono: diana, duracion: Semana 2 }
+      - { titulo: Puesta en marcha, texto: "Montamos campañas, web y contenidos, y medimos desde el primer día.", icono: cohete, duracion: Semanas 3 a 6 }
+      - { titulo: Mejora continua, texto: "Revisamos cada mes lo que funciona, quitamos lo que no y te lo contamos claro.", icono: grafico, duracion: Cada mes }
+
+  cita:
+    activa: true
+    antetitulo: Lo que pensamos
+    declaracion: "La mayoría de las empresas no tienen un problema de marketing. Tienen un problema de estrategia."
+    resalte: problema de estrategia
+    autor: "Clara Benlloch · Fundadora de Lúcida Estudio"
+
+  noticias:
+    activa: true
+    antetitulo: Del blog
+    titulo: Ideas que mueven negocios
+    resalte: mueven negocios
+    cta: { texto: Ver todos los artículos, url: "https://www.linkedin.com/" }
+    noticias:
+      - { titulo: "Cinco cosas que revisar en tu ficha de Google antes de pagar anuncios", texto: "Horarios, fotos, reseñas y categorías: lo básico que hace que te llamen sin gastar un euro.", fecha: 21 de octubre de 2026, categoria: SEO local, imagen: /fotos/noticia-1.jpg, url: "https://www.linkedin.com/" }
+      - { titulo: "Por qué tus anuncios no venden (y no es culpa del algoritmo)", texto: "El anuncio solo trae a la gente. Lo que pasa después en tu web decide si compran.", fecha: 7 de octubre de 2026, categoria: Publicidad, imagen: /fotos/noticia-2.jpg, url: "https://www.linkedin.com/" }
+      - { titulo: "Cómo medir el marketing de una pyme con una hoja y diez minutos", texto: "Tres números que conviene mirar cada lunes para saber si vas por buen camino.", fecha: 23 de septiembre de 2026, categoria: Estrategia, imagen: /fotos/noticia-3.jpg, url: "https://www.linkedin.com/" }
+
+  opiniones:
+    activa: true
+    antetitulo: Opiniones
+    titulo: Lo que dicen quienes ya trabajan con nosotros
+    resalte: ya trabajan
+    testimonios:
+      - { texto: "En seis meses pasamos de depender del boca a boca a recibir reservas todas las semanas desde la web. Y entendemos cada euro que invertimos.", autor: Marta Ferrer, cargo: "Horno Ferrer, Benimaclet", nota: "5" }
+      - { texto: "Nos dijeron que no hacía falta estar en todas las redes. Nos centramos en dos y por fin tenemos tiempo para atender a los clientes.", autor: Vicent Albors, cargo: "Clínica dental Albors", nota: "5" }
+      - { texto: "Lo que más valoro es la claridad: cada mes sé qué se ha hecho y qué ha funcionado. Sin letra pequeña.", autor: Elena Cortina, cargo: "Despacho Cortina Abogados", nota: "5" }
+
+  preguntas:
+    activa: true
+    antetitulo: Preguntas frecuentes
+    titulo: Lo que nos preguntan antes de empezar
+    resalte: antes de empezar
+    cta: { texto: Pregúntanos lo que quieras, url: "/#contacto" }
+    preguntas:
+      - { pregunta: "¿La sesión de diagnóstico tiene algún coste?", respuesta: "No. Son 40 minutos, en el estudio o por videollamada, para conocer tu negocio y decirte qué haríamos. Sin compromiso." }
+      - { pregunta: "¿Hay permanencia?", respuesta: "No. Trabajamos mes a mes. Te pedimos tres meses para ver resultados, pero puedes dejarlo cuando quieras." }
+      - { pregunta: "¿Trabajáis solo con empresas de Valencia?", respuesta: "La mayoría de nuestros clientes son de Valencia y su comarca, pero trabajamos con negocios de toda España por videollamada." }
+      - { pregunta: "¿Cuánto hay que invertir en publicidad?", respuesta: "Depende de tu sector y tus objetivos. En el diagnóstico te damos una cifra realista y nunca gastamos más de lo acordado por escrito." }
+      - { pregunta: "¿Cómo sé si lo que hacéis funciona?", respuesta: "Cada mes recibes un informe sencillo con contactos, ventas y coste por cliente, y una reunión para decidir los siguientes pasos." }
+
+  cta:
+    activa: true
+    antetitulo: Empieza hoy
+    titulo: 40 minutos que pueden cambiar tu negocio
+    resalte: cambiar tu negocio
+    texto: "Una sesión gratuita para ver juntos dónde estás, dónde quieres llegar y qué haría falta para conseguirlo."
+    imagen: /fotos/cta.jpg
+    cta: { texto: Reserva tu sesión gratuita, url: "/#contacto" }
+    cta_secundario: { texto: Escríbenos por WhatsApp, url: "https://wa.me/34611482073" }
+    nota: Sin compromiso y sin permanencias.
+
+  contacto:
+    activa: true
+    antetitulo: Contacto
+    titulo: Hablemos de tu negocio
+    resalte: tu negocio
+    texto: "Cuéntanos qué necesitas y te llamamos en menos de 24 horas para fijar tu sesión gratuita."
+    boton: Quiero mi sesión gratuita

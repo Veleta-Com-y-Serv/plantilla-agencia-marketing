@@ -1,0 +1,84 @@
+---
+// Portada a sangre: banda morada casi a pantalla completa con la foto teñida de fondo y anillos.
+// Reparto 60/40: a la izquierda antetítulo, título enorme (con `resalte`), texto y dos botones; a la
+// derecha, `items` como tres tarjetas de servicio flotando (titulo, texto, icono, url). Sin items, el
+// texto ocupa todo el ancho. Sin foto, color pleno.
+import { seccion } from '../../data/site';
+import { altHero } from '../../lib/seo';
+import Imagen from '../ui/Imagen.astro';
+import Icono from '../ui/Icono.astro';
+import Resalte from '../ui/Resalte.astro';
+interface Props { id: string; primera?: boolean }
+const { id, primera = false } = Astro.props;
+const s = seccion(id);
+const tarjetas = s ? s.items.slice(0, 3) : [];
+const desfase = ['lg:translate-x-0', 'lg:-translate-x-10', 'lg:translate-x-4'];
+---
+
+{
+  s && (
+    <section id={id} class="banda banda--oscura">
+      {s.imagen && (
+        <div class="absolute inset-0 -z-10">
+          <Imagen src={s.imagen} alt={altHero()} ancho={1920} alto={1080} prioridad={primera} class="h-full w-full object-cover opacity-30 mix-blend-luminosity" />
+        </div>
+      )}
+      <div class="hero-velo absolute inset-0 -z-10" aria-hidden="true" />
+      <div class="anillo -right-40 -top-40 h-[34rem] w-[34rem] md:-right-24 md:h-[46rem] md:w-[46rem]" aria-hidden="true" />
+      <div class="anillo -bottom-56 -left-48 hidden h-[30rem] w-[30rem] md:block" aria-hidden="true" />
+
+      <div class:list={['contenedor grid min-h-[calc(88svh-var(--alto-cabecera))] items-center gap-12 py-16 md:py-24', tarjetas.length > 0 && 'lg:grid-cols-[1.5fr_1fr] lg:gap-16']}>
+        <div class="min-w-0">
+          {s.antetitulo && <p class="antetitulo">{s.antetitulo}</p>}
+          <h1 class="mt-6 text-[clamp(2.6rem,8.2vw,6.6rem)] font-black leading-[.95]">
+            <Resalte texto={s.titulo} resalte={s.resalte} />
+          </h1>
+          {s.texto && <p class="mt-7 max-w-2xl text-lg leading-relaxed opacity-85 md:text-xl">{s.texto}</p>}
+          {(s.cta || s.cta_secundario) && (
+            <div class="mt-10 flex flex-col gap-3 sm:flex-row sm:flex-wrap">
+              {s.cta && <a class="btn" href={s.cta.url}>{s.cta.texto}</a>}
+              {s.cta_secundario && <a class="btn-sec" href={s.cta_secundario.url}>{s.cta_secundario.texto}</a>}
+            </div>
+          )}
+        </div>
+
+        {tarjetas.length > 0 && (
+          <ul class="grid gap-4" aria-label="Servicios destacados">
+            {tarjetas.map((it, i) => (
+              <li class:list={['tarjeta-flotante rounded-2xl p-6 md:p-7', desfase[i]]}>
+                <div class="flex items-start gap-4">
+                  <span class="grid h-11 w-11 shrink-0 place-items-center rounded-xl bg-acento text-primario" aria-hidden="true">
+                    <Icono nombre={it.icono} tam={22} />
+                  </span>
+                  <div class="min-w-0">
+                    <p class="font-display text-lg font-extrabold tracking-tight md:text-xl">{it.titulo}</p>
+                    {it.texto && <p class="mt-1.5 text-sm leading-relaxed opacity-75">{it.texto}</p>}
+                    {it.url && (
+                      <a href={it.url} class="enlace-flecha mt-2 text-acento">
+                        Saber más <Icono nombre="flecha" tam={16} />
+                      </a>
+                    )}
+                  </div>
+                </div>
+              </li>
+            ))}
+          </ul>
+        )}
+      </div>
+    </section>
+  )
+}
+
+<style>
+  .hero-velo {
+    background:
+      radial-gradient(60rem 40rem at 85% 10%, color-mix(in srgb, var(--c-chispa) 28%, transparent), transparent 70%),
+      linear-gradient(100deg, color-mix(in srgb, var(--c-primario) 96%, transparent) 30%, color-mix(in srgb, var(--c-primario) 70%, transparent));
+  }
+  .tarjeta-flotante {
+    background: color-mix(in srgb, var(--c-sobre-oscuro) 8%, transparent);
+    border: 1px solid color-mix(in srgb, var(--c-sobre-oscuro) 16%, transparent);
+    backdrop-filter: blur(10px);
+    box-shadow: 0 30px 60px -30px rgb(0 0 0 / .55);
+  }
+</style>

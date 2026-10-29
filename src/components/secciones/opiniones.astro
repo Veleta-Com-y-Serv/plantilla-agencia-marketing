@@ -1,0 +1,57 @@
+---
+// Opiniones de clientes en banda morada: titular, y testimonios en 1, 2 y 3 columnas con estrellas
+// lima (si hay `nota`), la frase, iniciales en un círculo rosa, autor y cargo.
+// `testimonios`: texto, autor, cargo, nota. Sin opiniones no se pinta.
+import { seccion, estrellas, iniciales } from '../../data/site';
+import Seccion from '../ui/Seccion.astro';
+import Titular from '../ui/Titular.astro';
+import Icono from '../ui/Icono.astro';
+interface Props { id: string }
+const s = seccion(Astro.props.id);
+const opiniones = s ? s.testimonios : [];
+---
+
+{
+  s && opiniones.length > 0 && (
+    <Seccion id={Astro.props.id} banda="oscura">
+      <div slot="fondo" class="anillo -left-56 -top-32 h-[34rem] w-[34rem]" aria-hidden="true" />
+      <span slot="fondo" class="comillas pointer-events-none absolute -bottom-24 right-4 -z-10 select-none text-[18rem] leading-none md:right-16 md:text-[28rem]" aria-hidden="true">”</span>
+      <Titular antetitulo={s.antetitulo} titulo={s.titulo} resalte={s.resalte} texto={s.texto} />
+      <ul class="grid gap-5 md:grid-cols-2 lg:grid-cols-3">
+        {opiniones.map((t) => {
+          const n = estrellas(t.nota);
+          return (
+            <li>
+              <figure class="opinion flex h-full flex-col rounded-2xl p-7 md:p-8">
+                {n > 0 && (
+                  <p class="flex gap-1 text-acento" aria-label={`${n} de 5 estrellas`}>
+                    {Array.from({ length: n }).map(() => <Icono nombre="estrella" tam={18} class="fill-current" />)}
+                  </p>
+                )}
+                <blockquote class="mt-5 flex-1 text-lg leading-relaxed">
+                  <p>«{t.texto}»</p>
+                </blockquote>
+                {t.autor && (
+                  <figcaption class="mt-8 flex items-center gap-4 border-t border-white/10 pt-6">
+                    <span class="avatar grid h-11 w-11 shrink-0 place-items-center rounded-full text-sm font-black" aria-hidden="true">{iniciales(t.autor)}</span>
+                    <span class="min-w-0">
+                      <span class="block font-bold">{t.autor}</span>
+                      {t.cargo && <span class="block text-sm opacity-70">{t.cargo}</span>}
+                    </span>
+                  </figcaption>
+                )}
+              </figure>
+            </li>
+          );
+        })}
+      </ul>
+      {s.cta && <a href={s.cta.url} class="btn-sec mt-12">{s.cta.texto}</a>}
+    </Seccion>
+  )
+}
+
+<style>
+  .opinion { background: color-mix(in srgb, var(--c-sobre-oscuro) 6%, transparent); border: 1px solid color-mix(in srgb, var(--c-sobre-oscuro) 12%, transparent); }
+  .avatar { background: var(--c-chispa); color: #fff; }
+  .comillas { font-family: Georgia, serif; color: color-mix(in srgb, var(--c-sobre-oscuro) 6%, transparent); }
+</style>

@@ -1,0 +1,107 @@
+/* Agencia y consultoría — estilo directo: bandas a sangre que alternan morado profundo, crema y lima;
+   titulares de palo seco muy pesados con palabras resaltadas en cursiva con serifa; botón en rosa. */
+@import "tailwindcss";
+@import "./comun.css";
+@config "../../tailwind.config.mjs";
+
+:root {
+  --fuente-texto: system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+  --fuente-titulos: "Avenir Next", "Segoe UI Variable Display", "Segoe UI", system-ui, -apple-system, Roboto, Arial, sans-serif;
+  --fuente-resalte: "Iowan Old Style", "Palatino Linotype", Palatino, Georgia, "Times New Roman", serif;
+  --radio: .5rem; --ritmo: 4.5rem; --ritmo-md: 7.5rem; --ancho: 90rem;
+  --alto-cabecera: 4.5rem;
+
+  /* Derivados de los cuatro colores de site.yaml: aguantan que el cliente los cambie. */
+  --c-oscuro: color-mix(in oklab, var(--c-primario) 78%, #000);
+  --c-claro: color-mix(in oklab, var(--c-fondo) 95%, var(--c-primario));
+  --c-sobre-oscuro: color-mix(in oklab, var(--c-fondo) 94%, #fff);
+  --c-linea: color-mix(in srgb, var(--c-texto) 14%, transparent);
+  /* «Chispa»: el rosa del botón. Sale del primario girando el tono (sin un quinto color que rellenar). */
+  --c-chispa: color-mix(in oklab, var(--c-primario) 35%, #e0287a);
+}
+@supports (color: oklch(from red l c h)) {
+  :root { --c-chispa: oklch(from var(--c-primario) 0.57 0.22 calc(h + 55)); }
+}
+:root { --c-medio: color-mix(in oklab, var(--c-primario) 72%, var(--c-chispa)); }
+
+@layer base {
+  body { font-family: var(--fuente-texto); font-size: 1.0625rem; line-height: 1.65; background: var(--c-fondo); }
+  h1, h2, h3 { font-family: var(--fuente-titulos); font-weight: 800; letter-spacing: -0.035em; line-height: 1.02; }
+  em.resalte { font-family: var(--fuente-resalte); font-style: italic; font-weight: 600; letter-spacing: -0.01em; }
+}
+
+@layer components {
+  /* Bandas a todo el ancho: oscura (morado), media (morado encendido), clara (crema), lima y chispa. */
+  .banda { position: relative; isolation: isolate; overflow: hidden; }
+  .banda--oscura { background: var(--c-primario); color: var(--c-sobre-oscuro); }
+  .banda--profunda { background: var(--c-oscuro); color: var(--c-sobre-oscuro); }
+  .banda--media { background: linear-gradient(115deg, var(--c-medio), var(--c-primario)); color: var(--c-sobre-oscuro); }
+  .banda--clara { background: var(--c-fondo); color: var(--c-texto); }
+  .banda--crema { background: var(--c-claro); color: var(--c-texto); }
+  .banda--lima { background: var(--c-acento); color: var(--c-primario); }
+  .banda--chispa { background: linear-gradient(120deg, var(--c-chispa), var(--c-medio)); color: #fff; }
+
+  /* Anillos decorativos de las bandas oscuras */
+  .anillo { position: absolute; z-index: -1; border-radius: 9999px; border: clamp(2.5rem, 7vw, 6rem) solid color-mix(in srgb, var(--c-sobre-oscuro) 5%, transparent); pointer-events: none; }
+
+  /* Antetítulo con línea de color */
+  .antetitulo { display: flex; align-items: center; gap: .75rem; font-size: .75rem; font-weight: 800; letter-spacing: .2em; text-transform: uppercase; }
+  .antetitulo::before { content: ""; width: 2.25rem; height: 3px; border-radius: 3px; background: var(--c-acento); flex: none; }
+  .banda--clara .antetitulo, .banda--crema .antetitulo { color: var(--c-primario); }
+  .banda--oscura .antetitulo, .banda--profunda .antetitulo, .banda--media .antetitulo { color: var(--c-acento); }
+  .banda--lima .antetitulo::before, .banda--chispa .antetitulo::before { background: currentColor; }
+  .titular--centro .antetitulo { justify-content: center; }
+
+  .titulo-seccion { font-size: clamp(2.25rem, 6vw, 4.75rem); margin-top: 1rem; }
+  .banda--clara .titulo-seccion, .banda--crema .titulo-seccion { color: var(--c-primario); }
+  .titular { max-width: 56rem; margin-bottom: 3rem; }
+  .titular--centro { margin-inline: auto; text-align: center; }
+  .titular-texto { margin-top: 1.25rem; font-size: 1.15rem; opacity: .82; max-width: 42rem; }
+  .titular--centro .titular-texto { margin-inline: auto; }
+
+  /* Resalte: lima sobre oscuro; subrayado lima sobre claro (el lima como texto no se leería sobre crema). */
+  .banda--oscura em.resalte, .banda--profunda em.resalte, .banda--media em.resalte { color: var(--c-acento); }
+  .banda--clara em.resalte, .banda--crema em.resalte { background: linear-gradient(transparent 62%, color-mix(in srgb, var(--c-acento) 85%, transparent) 62%, color-mix(in srgb, var(--c-acento) 85%, transparent) 92%, transparent 92%); padding-inline: .06em; }
+  .banda--lima em.resalte, .banda--chispa em.resalte { text-decoration: underline; text-decoration-thickness: .08em; text-underline-offset: .12em; }
+
+  /* Botones: rosa «chispa» (principal), contorno, lima y blanco */
+  .btn, .btn-sec, .btn-lima, .btn-blanco { min-height: 3rem; padding: .8rem 1.6rem; border-radius: var(--radio); font-size: .8rem; font-weight: 800; letter-spacing: .12em; text-transform: uppercase; }
+  .btn { background: var(--c-chispa); color: #fff; box-shadow: 0 10px 30px -12px var(--c-chispa); }
+  .btn:hover { background: color-mix(in oklab, var(--c-chispa) 85%, #000); }
+  .btn-sec { border: 2px solid currentColor; }
+  .btn-sec:hover { background: color-mix(in srgb, currentColor 12%, transparent); }
+  .btn-lima { display: inline-flex; align-items: center; justify-content: center; gap: .5rem; background: var(--c-acento); color: var(--c-primario); text-decoration: none; }
+  .btn-lima:hover { background: color-mix(in oklab, var(--c-acento) 85%, #fff); }
+  .btn-blanco { display: inline-flex; align-items: center; justify-content: center; gap: .5rem; background: #fff; color: var(--c-primario); text-decoration: none; }
+  .btn-blanco:hover { background: var(--c-acento); }
+  .enlace-flecha { display: inline-flex; align-items: center; gap: .5rem; min-height: 2.75rem; font-size: .78rem; font-weight: 800; letter-spacing: .14em; text-transform: uppercase; text-decoration: none; }
+  .enlace-flecha svg { transition: transform .15s ease; }
+  .enlace-flecha:hover svg { transform: translateX(4px); }
+
+  /* Cabecera: siempre sólida, morada, pegada arriba y a todo el ancho */
+  .cabecera--agencia { position: sticky; top: 0; background: var(--c-primario); color: var(--c-sobre-oscuro); transition: box-shadow .2s ease, background-color .2s ease; }
+  .cabecera--agencia.con-sombra { background: color-mix(in oklab, var(--c-primario) 92%, #000); box-shadow: 0 10px 30px -15px rgb(0 0 0 / .6); }
+  .cabecera--agencia .cabecera-fila { min-height: var(--alto-cabecera); }
+  .cabecera--agencia .marca-inicial { display: grid; place-items: center; width: 2.5rem; height: 2.5rem; border-radius: .6rem; background: var(--c-acento); color: var(--c-primario); font-family: var(--fuente-titulos); font-weight: 900; font-size: 1.35rem; flex: none; }
+  .cabecera--agencia .marca-nombre { font-family: var(--fuente-titulos); font-weight: 800; font-size: 1.15rem; letter-spacing: -0.02em; }
+  .cabecera--agencia .cabecera-nav { gap: 2rem; }
+  .cabecera--agencia .cabecera-nav a { font-size: .78rem; font-weight: 700; letter-spacing: .14em; text-transform: uppercase; opacity: .85; padding-block: .5rem; border-bottom: 2px solid transparent; }
+  .cabecera--agencia .cabecera-nav a:hover { opacity: 1; border-color: var(--c-acento); }
+  .cabecera--agencia .menu-movil summary { min-height: 2.75rem; padding-inline: .9rem; border: 2px solid color-mix(in srgb, currentColor 30%, transparent); border-radius: var(--radio); font-size: .8rem; letter-spacing: .12em; text-transform: uppercase; }
+  .cabecera--agencia .menu-movil-panel { padding: .5rem 1rem 1.25rem; }
+  .cabecera--agencia .menu-movil-panel a { font-weight: 700; }
+
+  /* Pie: morado muy profundo, a todo el ancho */
+  .pie--agencia { background: var(--c-oscuro); color: var(--c-sobre-oscuro); padding-top: 0; }
+  .pie--agencia .pie-legal { margin-top: 0; }
+
+  .formulario .campo label { font-size: .78rem; letter-spacing: .12em; text-transform: uppercase; font-weight: 800; }
+  .formulario .campo input, .formulario .campo textarea { background: #fff; border: 2px solid var(--c-linea); min-height: 3rem; }
+  .formulario .campo input:focus, .formulario .campo textarea:focus { border-color: var(--c-primario); outline: none; box-shadow: 0 0 0 3px color-mix(in srgb, var(--c-acento) 70%, transparent); }
+
+  .texto-largo h2 { color: var(--c-primario); font-size: 1.5rem; }
+
+  /* Franja de palabras en movimiento (sectores). Se para con «reducir movimiento». */
+  .cinta { display: flex; width: max-content; animation: cinta 45s linear infinite; }
+  @keyframes cinta { to { transform: translateX(-50%); } }
+}

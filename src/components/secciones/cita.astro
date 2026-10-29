@@ -1,0 +1,29 @@
+---
+// Cita enorme en banda lima a todo el ancho: la frase que define la agencia (`declaracion`), con
+// comillas gigantes de adorno y la firma (`autor`). Si no hay declaración se usa el `titulo`.
+import { seccion } from '../../data/site';
+import Seccion from '../ui/Seccion.astro';
+import Resalte from '../ui/Resalte.astro';
+interface Props { id: string }
+const s = seccion(Astro.props.id);
+const frase = s ? String(s.declaracion || s.titulo || '').trim() : '';
+---
+
+{
+  s && frase && (
+    <Seccion id={Astro.props.id} banda="lima" etiqueta={s.antetitulo || 'Cita'}>
+      <span slot="fondo" class="comillas pointer-events-none absolute -top-6 left-2 -z-10 select-none text-[16rem] leading-none md:-top-16 md:left-10 md:text-[26rem]" aria-hidden="true">“</span>
+      <figure class="mx-auto max-w-[72rem] text-center">
+        {s.antetitulo && <p class="antetitulo justify-center">{s.antetitulo}</p>}
+        <blockquote class="mt-8 font-display text-[clamp(1.9rem,5.2vw,4.6rem)] font-black leading-[1.05] tracking-tight">
+          <p>«<Resalte texto={frase} resalte={s.resalte} />»</p>
+        </blockquote>
+        {s.autor && <figcaption class="mt-10 text-xs font-extrabold uppercase tracking-[.24em] md:text-sm">— {s.autor}</figcaption>}
+      </figure>
+    </Seccion>
+  )
+}
+
+<style>
+  .comillas { font-family: Georgia, "Times New Roman", serif; color: color-mix(in srgb, var(--c-primario) 12%, transparent); }
+</style>

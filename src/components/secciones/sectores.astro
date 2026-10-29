@@ -1,0 +1,67 @@
+---
+// Sectores con los que trabaja la agencia, en banda morada profunda: `items` (titulo) como etiquetas
+// grandes, una cinta de palabras enormes en contorno que cruza la pantalla (decorativa) y, si hay
+// `galeria`, una franja de fotos de borde a borde sin márgenes (2 columnas en móvil, 4 en escritorio).
+import { seccion } from '../../data/site';
+import { altGaleria } from '../../lib/seo';
+import Titular from '../ui/Titular.astro';
+import Imagen from '../ui/Imagen.astro';
+interface Props { id: string }
+const s = seccion(Astro.props.id);
+const etiquetas = s ? s.items : [];
+const fotos = s ? s.galeria.slice(0, 8) : [];
+// La cinta se repite hasta ser más ancha que cualquier pantalla (con pocas etiquetas no quedan huecos).
+let palabras = etiquetas.map((e) => e.titulo);
+while (palabras.length > 0 && palabras.join('').length < 70) palabras = [...palabras, ...palabras];
+---
+
+{
+  s && (
+    <section id={Astro.props.id} class="banda banda--profunda">
+      <div class="seccion !pb-12 md:!pb-16">
+        <div class="contenedor">
+          <div class="grid gap-10 lg:grid-cols-[1fr_1.35fr] lg:gap-16">
+            <Titular class="!mb-0" antetitulo={s.antetitulo} titulo={s.titulo} resalte={s.resalte} texto={s.texto} />
+            {etiquetas.length > 0 && (
+              <ul class="flex flex-wrap content-start gap-3 lg:pt-4">
+                {etiquetas.map((e) => (
+                  <li class="etiqueta rounded-full px-5 py-3 text-base font-bold md:px-6 md:text-lg xl:px-7 xl:py-4 xl:text-xl">{e.titulo}</li>
+                ))}
+              </ul>
+            )}
+          </div>
+        </div>
+      </div>
+      {palabras.length > 0 && (
+        <div class="overflow-hidden border-y border-white/10 py-6 md:py-8" aria-hidden="true">
+          <div class="cinta">
+            {[0, 1].map(() => (
+              <p class="flex shrink-0">
+                {palabras.map((p) => (
+                  <span class="contorno whitespace-nowrap pr-10 font-display text-[clamp(3rem,9vw,7.5rem)] font-black leading-none tracking-tight md:pr-16">
+                    {p} <span class="text-acento">✦</span>
+                  </span>
+                ))}
+              </p>
+            ))}
+          </div>
+        </div>
+      )}
+      {fotos.length > 0 && (
+        <ul class:list={['grid grid-cols-2', fotos.length >= 4 ? 'lg:grid-cols-4' : fotos.length === 3 ? 'lg:grid-cols-3' : '']}>
+          {fotos.map((f, i) => (
+            <li class="aspect-square overflow-hidden lg:aspect-[3/4]">
+              <Imagen src={f} alt={altGaleria(i)} ancho={720} alto={960} class="h-full w-full object-cover transition duration-500 hover:scale-105" />
+            </li>
+          ))}
+        </ul>
+      )}
+    </section>
+  )
+}
+
+<style>
+  .etiqueta { border: 2px solid color-mix(in srgb, var(--c-acento) 55%, transparent); transition: background-color .2s ease, color .2s ease; }
+  .etiqueta:hover { background: var(--c-acento); color: var(--c-primario); }
+  .contorno { color: transparent; -webkit-text-stroke: 2px color-mix(in srgb, var(--c-sobre-oscuro) 55%, transparent); }
+</style>

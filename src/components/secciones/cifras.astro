@@ -1,0 +1,39 @@
+---
+// Banda de cifras a todo el ancho en morado encendido: números enormes en lima y su etiqueta.
+// `items`: titulo (la cifra, como texto: «+120», «3x») y texto (la etiqueta). Sin cifras no se pinta.
+import { seccion } from '../../data/site';
+import Seccion from '../ui/Seccion.astro';
+interface Props { id: string }
+const s = seccion(Astro.props.id);
+const cifras = s ? s.items.slice(0, 8) : [];
+const COLUMNAS: Record<number, string> = { 1: 'lg:grid-cols-1', 2: 'lg:grid-cols-2', 3: 'lg:grid-cols-3', 4: 'lg:grid-cols-4' };
+---
+
+{
+  s && cifras.length > 0 && (
+    <Seccion id={Astro.props.id} banda="media" class="!py-14 md:!py-20" etiqueta={s.titulo || undefined}>
+      <div slot="fondo" class="anillo -left-24 top-1/2 h-[24rem] w-[24rem] -translate-y-1/2" aria-hidden="true" />
+      <div slot="fondo" class="anillo -right-32 -bottom-40 h-[26rem] w-[26rem]" aria-hidden="true" />
+      {(s.antetitulo || s.titulo) && (
+        <div class="mb-10 flex flex-col gap-3 md:mb-14 md:flex-row md:items-end md:justify-between">
+          {s.antetitulo && <p class="antetitulo">{s.antetitulo}</p>}
+          {s.titulo && <h2 class="max-w-xl text-xl font-extrabold md:text-right md:text-2xl">{s.titulo}</h2>}
+        </div>
+      )}
+      <dl class:list={['grid grid-cols-2 gap-y-10', COLUMNAS[Math.min(cifras.length, 4)]]}>
+        {cifras.map((c) => (
+          <div class="cifra flex flex-col items-center px-3 text-center md:px-6">
+            <dt class="whitespace-nowrap font-display text-[clamp(2.8rem,7vw,5.6rem)] font-black leading-none tracking-tight text-acento">{c.titulo}</dt>
+            {c.texto && <dd class="mt-3 max-w-[16rem] text-xs font-bold uppercase leading-snug tracking-[.16em] opacity-80 md:text-sm">{c.texto}</dd>}
+          </div>
+        ))}
+      </dl>
+    </Seccion>
+  )
+}
+
+<style>
+  @media (min-width: 1024px) {
+    .cifra + .cifra { border-left: 1px solid color-mix(in srgb, var(--c-sobre-oscuro) 18%, transparent); }
+  }
+</style>

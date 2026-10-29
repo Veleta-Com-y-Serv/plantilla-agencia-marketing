@@ -1,0 +1,80 @@
+---
+// Quiénes somos, partido 50/50 a sangre: la foto toca el borde izquierdo de la ventana y llena la
+// altura; a la derecha, sobre crema, antetítulo, título con `resalte`, párrafos, compromisos
+// (`items`: titulo, texto) con marca lima, el equipo en pequeño (`personas`: nombre, cargo, foto) y un
+// botón. Sin foto, el texto ocupa la banda entera.
+import { seccion, parrafos, externo } from '../../data/site';
+import { altSeccion } from '../../lib/seo';
+import Imagen from '../ui/Imagen.astro';
+import Icono from '../ui/Icono.astro';
+import Resalte from '../ui/Resalte.astro';
+interface Props { id: string }
+const s = seccion(Astro.props.id);
+---
+
+{
+  s && (
+    <section id={Astro.props.id} class="banda banda--clara">
+      <div class:list={['grid', s.imagen && 'lg:grid-cols-2']}>
+        {s.imagen && (
+          <div class="relative min-h-[22rem] sm:min-h-[30rem] lg:min-h-full">
+            <Imagen src={s.imagen} alt={altSeccion(s)} ancho={1200} alto={1400} class="absolute inset-0 h-full w-full object-cover" />
+            <div class="absolute bottom-0 right-0 h-24 w-24 bg-acento md:h-32 md:w-32" aria-hidden="true" />
+          </div>
+        )}
+        <div class:list={['sobre-texto py-16 md:py-24 lg:py-32', s.imagen ? 'px-4 md:px-12 lg:pl-20' : 'contenedor']}>
+          <div class:list={[s.imagen ? 'max-w-[40rem]' : 'grid gap-10 lg:grid-cols-2 lg:gap-16']}>
+            <div>
+              {s.antetitulo && <p class="antetitulo">{s.antetitulo}</p>}
+              {s.titulo && <h2 class="titulo-seccion"><Resalte texto={s.titulo} resalte={s.resalte} /></h2>}
+            </div>
+            <div>
+              <div class="mt-8 space-y-4 text-lg opacity-85">
+                {parrafos(s.texto).map((p) => <p>{p}</p>)}
+              </div>
+              {s.items.length > 0 && (
+                <ul class="mt-10 grid gap-6 sm:grid-cols-2">
+                  {s.items.map((it) => (
+                    <li class="flex gap-4">
+                      <span class="mt-0.5 grid h-8 w-8 shrink-0 place-items-center rounded-full bg-acento text-primario" aria-hidden="true">
+                        <Icono nombre={it.icono || 'check'} tam={16} />
+                      </span>
+                      <div>
+                        <p class="font-display text-lg font-extrabold leading-tight text-primario">{it.titulo}</p>
+                        {it.texto && <p class="mt-1 text-sm opacity-75">{it.texto}</p>}
+                      </div>
+                    </li>
+                  ))}
+                </ul>
+              )}
+              {s.personas.length > 0 && (
+                <ul class="mt-10 flex flex-wrap gap-x-8 gap-y-5 border-t border-texto/15 pt-8">
+                  {s.personas.map((p) => (
+                    <li class="flex items-center gap-3">
+                      <Imagen src={p.foto || '/placeholders/persona.svg'} alt={p.nombre} ancho={112} alto={112} class="h-14 w-14 rounded-full object-cover ring-4 ring-acento" />
+                      <div>
+                        <p class="font-bold leading-tight text-primario">{p.nombre}</p>
+                        {p.cargo && <p class="text-sm opacity-70">{p.cargo}</p>}
+                      </div>
+                    </li>
+                  ))}
+                </ul>
+              )}
+              {s.cta && (
+                <a href={s.cta.url} class="enlace-flecha mt-8 border-b-2 border-acento text-primario" {...(externo(s.cta.url) && { rel: 'noopener', target: '_blank' })}>
+                  {s.cta.texto} <Icono nombre="flecha" tam={16} />
+                </a>
+              )}
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  )
+}
+
+<style>
+  @media (min-width: 1024px) {
+    .sobre-texto.lg\:pl-20 { padding-right: max(2rem, calc((100vw - 90rem) / 2 + 2rem)); }
+  }
+</style>

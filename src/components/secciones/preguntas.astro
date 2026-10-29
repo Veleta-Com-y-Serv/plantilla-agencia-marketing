@@ -1,0 +1,43 @@
+---
+// Preguntas frecuentes en banda crema: titular fijo a la izquierda (con botón opcional) y acordeón
+// nativo <details> a la derecha, sin JavaScript, con preguntas grandes y un «+» en círculo lima.
+// Campos: `preguntas[]` (pregunta, respuesta). Sin preguntas no se pinta. También sirve de diseño para
+// apartados nuevos (`tipo: preguntas`).
+import { seccion } from '../../data/site';
+import Seccion from '../ui/Seccion.astro';
+import Titular from '../ui/Titular.astro';
+interface Props { id: string }
+const s = seccion(Astro.props.id);
+const preguntas = s ? s.preguntas.filter((p) => p && p.pregunta) : [];
+---
+
+{
+  s && preguntas.length > 0 && (
+    <Seccion id={Astro.props.id} banda="clara">
+      <div class="grid gap-10 lg:grid-cols-[1fr_1.5fr] lg:gap-20">
+        <div class="lg:sticky lg:top-28 lg:self-start">
+          <Titular class="!mb-0" antetitulo={s.antetitulo} titulo={s.titulo} resalte={s.resalte} texto={s.texto} />
+          {s.cta && <a class="btn mt-8" href={s.cta.url}>{s.cta.texto}</a>}
+        </div>
+        <div class="border-b-2 border-primario">
+          {preguntas.map((p) => (
+            <details class="faq border-t-2 border-primario">
+              <summary class="flex items-center gap-5 py-6 md:py-7">
+                <span class="flex-1 font-display text-xl font-extrabold leading-snug tracking-tight text-primario md:text-2xl">{p.pregunta}</span>
+                <span class="faq-signo grid h-10 w-10 shrink-0 place-items-center rounded-full bg-acento text-2xl font-bold leading-none text-primario" aria-hidden="true">+</span>
+              </summary>
+              {p.respuesta && <p class="max-w-3xl pb-7 pr-12 text-lg opacity-80">{p.respuesta}</p>}
+            </details>
+          ))}
+        </div>
+      </div>
+    </Seccion>
+  )
+}
+
+<style>
+  .faq summary { list-style: none; cursor: pointer; }
+  .faq summary::-webkit-details-marker { display: none; }
+  .faq-signo { transition: transform 0.2s ease, background-color .2s ease; }
+  .faq[open] .faq-signo { transform: rotate(45deg); background: var(--c-chispa); color: #fff; }
+</style>
