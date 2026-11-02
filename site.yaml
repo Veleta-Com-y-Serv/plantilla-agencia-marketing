@@ -67,10 +67,51 @@ secciones:
     texto: "Elige un servicio suelto o un plan completo. Siempre con objetivos claros, un informe al mes y una persona de referencia."
     cta: { texto: Pide tu diagnóstico, url: "/#contacto" }
     items:
-      - { titulo: Estrategia y consultoría, texto: "Analizamos tu negocio, tu competencia y tus clientes para decidir dónde invertir y dónde no.", icono: brujula, url: "/#contacto", destacado: false }
-      - { titulo: Publicidad en Google y Meta, texto: "Campañas con presupuesto controlado, pruebas constantes y resultados que puedes ver cada semana.", icono: megafono, url: "/#contacto", destacado: true }
-      - { titulo: SEO y contenidos, texto: "Que te encuentren cuando te buscan: posicionamiento local, blog y fichas de Google bien cuidadas.", icono: lupa, url: "/#contacto", destacado: false }
-      - { titulo: Diseño web, texto: "Webs rápidas y fáciles de usar, con mensajes claros y formularios que llegan a tu correo.", icono: pantalla, url: "/#contacto", destacado: false }
+      - titulo: Estrategia y consultoría
+        texto: "Analizamos tu negocio, tu competencia y tus clientes para decidir dónde invertir y dónde no."
+        icono: brujula
+        url: "/#contacto"
+        destacado: false
+        detalle: |
+          Antes de gastar un euro en campañas o en una web nueva, conviene saber hacia dónde se va. La estrategia y consultoría es ese trabajo previo: entender cómo gana dinero tu negocio, qué clientes te interesan de verdad y por qué te eligen a ti y no a la competencia.
+
+          Empezamos con una conversación sin prisas y con una revisión de lo que ya tienes: web, fichas de Google, redes, anuncios y números de ventas. Después miramos a los competidores de tu zona y a los clientes que más te compran, y con todo ello montamos un plan por prioridades: qué hacer primero, qué esperar después y qué descartar.
+
+          Recibes un documento claro, sin jerga, con objetivos medibles y un calendario realista. Te lo explicamos en una reunión y lo puedes ejecutar con nosotros o con tu propio equipo. Es un buen punto de partida si notas que haces cosas de marketing pero no sabes cuáles funcionan, o si vas a lanzar un servicio nuevo y quieres acertar a la primera.
+      - titulo: Publicidad en Google y Meta
+        texto: "Campañas con presupuesto controlado, pruebas constantes y resultados que puedes ver cada semana."
+        icono: megafono
+        url: "/#contacto"
+        destacado: true
+        detalle: |
+          La publicidad en Google y Meta funciona cuando hay método. No se trata de subir un presupuesto y esperar, sino de probar mensajes, públicos y anuncios con orden, quedarse con lo que da resultados y parar lo que no.
+
+          Empezamos fijando qué es un buen resultado para ti: llamadas, formularios, reservas o ventas online. Con eso preparamos el seguimiento para que cada contacto quede medido, diseñamos los anuncios y las páginas de destino, y lanzamos las primeras campañas con un presupuesto que tú controlas en todo momento.
+
+          Cada semana revisamos las cifras y hacemos ajustes: cambiamos textos, imágenes y segmentaciones, y movemos la inversión hacia lo que mejor responde. Una vez al mes recibes un informe en lenguaje llano con lo que se ha gastado, lo que ha entrado y lo que haremos el mes siguiente. Sin permanencias: si no te compensa, lo dejas.
+      - titulo: SEO y contenidos
+        texto: "Que te encuentren cuando te buscan: posicionamiento local, blog y fichas de Google bien cuidadas."
+        icono: lupa
+        url: "/#contacto"
+        destacado: false
+        imagenes: "/fotos/noticia-1.jpg; /fotos/noticia-2.jpg"
+        detalle: |
+          Posicionar bien en buscadores es conseguir que te encuentren justo cuando alguien necesita lo que vendes. Para un negocio local eso significa cuidar tres frentes a la vez: la web, la ficha de Google y los contenidos que respondan a lo que preguntan tus clientes.
+
+          Primero hacemos una auditoría de cómo apareces hoy y de qué buscan las personas de tu zona. Corregimos lo técnico que frena a tu web, ordenamos las páginas de servicios para que cada una responda a una búsqueda concreta y dejamos tu ficha de Google completa, con fotos, horarios, servicios y reseñas bien gestionadas.
+
+          Después viene el trabajo constante: artículos útiles en tu blog, mejoras en las páginas que ya funcionan y seguimiento de las posiciones. El SEO no da resultados de un día para otro, pero lo que se construye bien se mantiene, y cada mes te enseñamos qué ha avanzado y qué viene a continuación.
+      - titulo: Diseño web
+        texto: "Webs rápidas y fáciles de usar, con mensajes claros y formularios que llegan a tu correo."
+        icono: pantalla
+        url: "/#contacto"
+        destacado: false
+        detalle: |
+          Una web tiene que hacer una cosa muy bien: que quien llega entienda en pocos segundos qué ofreces y cómo contactarte. Diseñamos webs rápidas, claras y pensadas primero para el móvil, que es desde donde te visita la mayoría de tus clientes.
+
+          Trabajamos contigo los mensajes y la estructura antes de tocar el diseño: qué se cuenta en la portada, qué servicios se explican por separado y dónde va cada llamada a la acción. Luego cuidamos la imagen para que encaje con tu marca, preparamos los formularios para que lleguen directamente a tu correo y revisamos que todo cargue rápido y se vea bien en cualquier pantalla.
+
+          Antes de publicar lo repasamos juntos y te enseñamos a cambiar tú mismo los textos y las fotos cuando lo necesites. Además dejamos la base lista para que buscadores y herramientas de medida entiendan tu web desde el primer día.
       - { titulo: Redes sociales, texto: "Calendario, contenidos y respuestas. Una voz reconocible en Instagram, LinkedIn o TikTok.", icono: chat, url: "/#contacto", destacado: false }
       - { titulo: Marca e identidad, texto: "Nombre, logotipo, colores y tono de voz para que tu negocio se recuerde.", icono: pincel, url: "/#contacto", destacado: false }
 

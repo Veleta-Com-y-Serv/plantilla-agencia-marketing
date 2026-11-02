@@ -48,3 +48,8 @@ y rediseñada entera. Este fichero se queda en el repo: es lo que lee quien (per
   reuniones (llamada a la acción). Sin texto legible, sin logotipos, sin personas reconocibles.
 - **Qué no hacer**: volver a la columna estrecha o a las tarjetas blancas sobre fondo gris; poner el lima como
   texto sobre claro; meter precios o cifras fijas en los componentes (todo sale de `site.yaml`).
+
+## Páginas propias (fichas)
+Con la misma piel que la portada: cabecera y pie de la plantilla, migas (Inicio › Sección › Elemento), hero con la foto del
+elemento (sin foto, su icono), `detalle` en párrafos, tabla de datos, caja de contacto, galería (`imagenes`) y otros elementos
+de la misma lista.
