@@ -23,7 +23,7 @@ secciones:
   - { id: contacto, nombre: Contacto }
 estilo: directo
 plan_minimo: presencia
-version: 1.2.0
+version: 1.2.1
 base: astrowind
 demo_url: https://demo-plantilla-agencia-marketing.noexpertise.com
 activa: true
@@ -34,10 +34,10 @@ fichas:
   - { lista: servicios, campo: items, ruta: servicios, nombre: Servicio, tipo: Service }
 
 # Varias páginas (docs/plantillas.md § Varias páginas): reparto recomendado al activar «Varias páginas».
-# Inicio se queda con la portada y lo que no esté en ninguna página (aquí, cifras, blog, llamada a la acción).
+# Inicio se queda con la portada y lo que no esté en ninguna página (aquí, cifras, el estudio, blog, llamada a la acción).
 paginas:
   - { ruta: servicios, titulo: Servicios, secciones: "servicios; sectores" }
-  - { ruta: la-agencia, titulo: La agencia, secciones: "sobre; proceso; opiniones" }
+  - { ruta: como-trabajamos, titulo: Cómo trabajamos, secciones: "proceso; opiniones" }
   - { ruta: contacto, titulo: Contacto, secciones: "cita; preguntas; contacto" }
 
 # Asistente de puesta en marcha (NoExpertise): un paso por pantalla. Rutas del site sin índices;
